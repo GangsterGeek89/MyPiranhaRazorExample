@@ -13,59 +13,33 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:700|Open+Sans:300,400,600">
+    <link rel="stylesheet" href="~/assets/css/style.min.css" asp-append-version="true">
 
     <title>@ViewBag.Title</title>
 
     @RenderSection("head", required: false)
 </head>
 <body>
-    <header role="banner">
-        <div class="menu">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        <nav class="navbar navbar-expand-md">
-                            <div class="navbar-brand">
-                                <a href="https://twitter.com/piranhacms" target="blank"><img src="~/assets/img/twitter.png"></a>
-                                <a href="https://github.com/piranhacms/piranha.core" target="blank"><img src="~/assets/img/github.png"></a>
-                            </div>
-                            <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#mobileNavbar" aria-controls="mobileNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon">&#9776;</span>
-                            </button>
-                            <div class="navbar-collapse collapse" id="mobileNavbar">
-                                <ul class="justify-content-center navbar-nav mr-auto">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="~/">Piranha CMS <small>8.4</small></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                                    @foreach (var item in await WebApp.Site.Sitemap.ForUserAsync(User, Auth))
-                                    {
-                                        if (!item.IsHidden)
-                                        {
-                                            <li class="nav-item @(item.Id == WebApp.PageId || item.HasChild(WebApp.PageId) ? "active" : "")">
-                                                <a class="nav-link" href="@WebApp.Url(item)">@item.MenuTitle</a>
-                                            </li>                
-                                        }
-                                    }
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    @foreach (var item in WebApp.Site.Sitemap.Where(i => !i.IsHidden))
+                    {
+        <li class="nav-item@(item.Id == WebApp.PageId || item.HasChild(WebApp.PageId) ? " active" : "")">
+            <a class="nav-link" href="@WebApp.Url(item)">@item.MenuTitle</a>
+        </li>}
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <div class="main-body">
-        @RenderBody()
-
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        Copyright &copy; 2018 Piranha CMS | <a href="https://twitter.com/piranhacms">@@piranhacms</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
+    @RenderBody()
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

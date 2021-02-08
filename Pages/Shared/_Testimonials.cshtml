@@ -1,0 +1,11 @@
+﻿@* Set the model to a list of Testimonial Regions *@
+@model IList<MyPiranhaExamples.Models.Regions.TestimonialRegion>
+@* Check the list isn't null and that it at least has one item *@
+@if (Model != null && Model.Count() > 0)
+{
+<div class="container">
+    <div class="row" style="padding-top: 30px; padding-bottom: 30px;">
+        @Html.DisplayForModel(Model)
+    </div>
+</div>
+}

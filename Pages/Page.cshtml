@@ -1,5 +1,6 @@
 ﻿@page
 @model SinglePage<StandardPage>
 
-@* Just to show us we are using this view :) *@
-<h1>The First Page Type View File</h1>
+@Html.DisplayFor(m => m.Data.Hero)
+
+<partial name="Shared/_Testimonials" for="Data.Testimonials" />

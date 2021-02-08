@@ -1,0 +1,18 @@
+﻿@model MyPiranhaExamples.Models.Regions.Hero
+@* Check to see if the hero should be shown *@
+@if (Model.Show == true)
+{
+<div class="hero" style="background-image: url(@Url.Content(Model.Image))">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h2>@Model.Leadin</h2>
+                <h3>@Model.Heading</h3>
+                @* Use the meta information from the image 'In this case just to credit the owner of the image' Check the image meta information to see what this field contains*@
+                @Html.Raw(Model.Image.Media.Description)
+            </div>
+        </div>
+    </div>
+</div>
+
+}
