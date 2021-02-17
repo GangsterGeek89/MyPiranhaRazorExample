@@ -40,6 +40,8 @@ namespace MyPiranhaExamples
                 options.UseSecurity(o =>
                 {
                     o.UsePermission("Subscriber");
+                    // Add Web User Permission
+                    o.UsePermission("WebUser", "Web User");
                 });
             });
         }
