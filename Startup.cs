@@ -35,7 +35,12 @@ namespace MyPiranhaExamples
                 options.UseEF<SQLiteDb>(db =>
                     db.UseSqlite("Filename=./gangstergeek.razorweb.db"));
                 options.UseIdentityWithSeed<IdentitySQLiteDb>(db =>
-                    db.UseSqlite("Filename=./gangstergeek.razorweb.db"));
+                    db.UseSqlite("Filename=./gangstergeek.razorweb.db"),
+                    cookieOptions: co => 
+                    {
+                        co.LoginPath = "/login";
+                        co.AccessDeniedPath = "/login";
+                    });
 
                 options.UseSecurity(o =>
                 {

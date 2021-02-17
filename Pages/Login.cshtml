@@ -1,0 +1,54 @@
+﻿@page "/login"
+@model MyPiranhaExamples.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+<main>
+    <section class="page-section singular-form section-blue">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-8">
+                    <div class="form-wrapper">
+                        <form id="account" method="post">
+                            <img class="img-fluid form-logo" src="/assets/images/Form-Logo.png" />
+                            <hr />
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Input.Username"></label>
+                                <input asp-for="Input.Username" class="form-control" />
+                                <span asp-validation-for="Input.Username" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="ReturnUrl" value="@Request.Query["ReturnUrl"]">
+                                <button type="submit" class="btn btn-primary">Log in</button>
+                            </div>
+                            <div class="form-group">
+                                <a id="forgot-password" href="#">Forgot your password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-side-content">
+                        <div class="coaching-stage-icon large mr-auto ml-auto">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <p class="text-center register-login-text">Need an account?</p>
+                        <a class="btn btn-border-complementary" href="/register">Register</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</main>
+
+@section script {
+    <partial name="_ValidationScriptsPartial" />
+}
